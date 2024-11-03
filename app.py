@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request,redirect
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime, UTC
+from datetime import datetime
 
 app =  Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
@@ -11,7 +11,7 @@ class Article(db.Model):
     title = db.Column(db.String(100), nullable=False)
     intro = db.Column(db.String(300),nullable=False)
     text = db.Column(db.Text, nullable=False)
-    date = db.Column(db.DateTime, default=datetime.now(UTC))
+    date = db.Column(db.DateTime, default=datetime.utcnow)
     def __repr__(self):
         return '<Article %r>' % self.id
 
